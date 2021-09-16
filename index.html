@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DEC</title>
+    <link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
+    <link rel="stylesheet" href="css/style.css"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+</head>
+
+<body><br><br><br><br><br><br><br><br><br><br><br>
+    <div id="title">
+        <h1>DEC - Discord Emoji Сonvector</h1>
+    </div>
+    <textarea id="input" style="resize:none;" cols="50" rows="5" onkeydown="convert()" onclick="convert()"></textarea>
+    <br/>
+    <br/>
+    <textarea id="output" style="resize:none;" cols="50" rows="5" readonly></textarea>
+    <br/>
+    <br/>
+    <button onclick="copy()">Скопировать</button>
+    <br/>
+    <br/>
+    <script type="text/javascript">
+        var returnnum = function (ch) {
+            return [':zero: ', ':one: ', ':two: ', ':three: ', ':four: ', ':five: ', ':six: ', ':seven: ', ':eight: ', ':nine: '][Number(ch)];
+        }
+        function convert() {
+            var input = document.getElementById("input").value;
+            var output = '';
+
+            for (var i = 0; i < input.length; i++) {
+                var ch = input.charAt(i).toLowerCase();
+                if (ch.match(/^[A-Z]$/i)) { //алфавит
+                    output += ':regional_indicator_' + ch + ':';
+                } else if (ch.match(/^[0-9]$/)) { //числа
+                    output += returnnum(ch);
+                } else {
+                    output += ch;
+                }
+            }
+            output = output.replace(' ', '  '); //Четкое разграничение за счет дублирования пробелов
+            document.getElementById("output").value = output;
+        }
+        function copy() {
+            document.querySelector("#output").select();
+            document.execCommand('copy');
+        }
+    </script>
+    <br>
+    <p>Discord разработчика: Esc#2164 | Тигровый Ястреб</p>
+    <ul id="icons">
+        <!--открытый код-->
+        <li>
+            <a href="https://github.com/2323452/dec" target="_blank">
+                <i class="fas fa-code"></i>
+            </a>
+        </li>
+        <!--Github разработчика-->
+        <li>
+            <a href="https://github.com/2323452" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+    </ul>
+</body>
+</html>
